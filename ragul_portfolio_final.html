@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ragul — AI/ML Engineer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0d1b2a;--accent:#1e6fff;--teal:#00c6a2;
+  --bg:#f7f8fc;--surface:#fff;--muted:#5a6a7a;--border:#e3e8f0;
+  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--navy)}
+a{text-decoration:none;color:inherit}
+
+nav{background:var(--navy);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.07)}
+.brand{font-size:18px;font-weight:700;color:#fff;letter-spacing:-.5px;cursor:pointer}
+.brand span{color:var(--accent)}
+.nav-links{display:flex;gap:4px}
+.nav-links button{background:none;border:none;font-size:13px;font-family:inherit;color:rgba(255,255,255,0.6);font-weight:500;padding:8px 16px;border-radius:7px;cursor:pointer;transition:all .15s}
+.nav-links button:hover{color:#fff;background:rgba(255,255,255,0.09)}
+.nav-links button.active{color:#fff;background:rgba(30,111,255,0.3)}
+
+.hero{background:var(--navy);padding:5rem 3rem 4.5rem}
+.hero-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(0,198,162,0.12);border:1px solid rgba(0,198,162,0.25);color:var(--teal);font-size:12px;font-family:var(--mono);padding:5px 12px;border-radius:20px;margin-bottom:1.25rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:44px;font-weight:700;color:#fff;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1rem}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:2rem}
+.hero-btns{display:flex;gap:.75rem}
+.bp{background:var(--accent);color:#fff;padding:11px 24px;border-radius:7px;font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.bp:hover{opacity:.85}
+.bg-btn{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);padding:11px 24px;border-radius:7px;font-size:14px;transition:all .15s;display:inline-block}
+.bg-btn:hover{border-color:rgba(255,255,255,.45);color:#fff}
+.term{background:#0a1520;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.25rem 1.5rem;font-family:var(--mono);font-size:12.5px;line-height:1.95}
+.tb{display:flex;gap:6px;margin-bottom:1rem}
+.tb span{width:10px;height:10px;border-radius:50%}
+.tr{background:#ff5f56}.ty{background:#ffbd2e}.tg{background:#27c93f}
+.kw{color:#c792ea}.fn{color:#82aaff}.st{color:#c3e88d}.cm{color:rgba(255,255,255,.28);font-style:italic}
+.tl{color:rgba(255,255,255,.65)}
+
+section{padding:4.5rem 3rem}
+.inner{max-width:1000px;margin:0 auto}
+.stag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.5rem}
+.sh{font-size:30px;font-weight:700;color:var(--navy);letter-spacing:-.8px;margin-bottom:.6rem}
+.ss{font-size:15px;color:var(--muted);line-height:1.7;max-width:520px;margin-bottom:2.5rem}
+
+/* About */
+.ag{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start}
+.av{background:var(--navy);border-radius:16px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;max-width:220px}
+.av-i{font-size:52px;font-weight:700;color:rgba(255,255,255,.1)}
+.av-n{font-size:13px;font-weight:600;color:#fff}
+.av-r{font-size:11px;color:rgba(255,255,255,.4)}
+.av-b{margin-top:.5rem;background:rgba(0,198,162,.15);border:1px solid rgba(0,198,162,.3);color:var(--teal);font-size:10px;padding:3px 10px;border-radius:10px}
+.abt p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:1rem}
+.sts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.75rem}
+.st-c{background:var(--navy);border-radius:10px;padding:1rem;text-align:center}
+.st-c .n{display:block;font-size:24px;font-weight:700;color:#fff;letter-spacing:-1px}
+.st-c .l{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* Skills */
+.skills-sec{background:var(--navy)}
+.skills-sec .stag{color:rgba(0,198,162,.8)}
+.skills-sec .sh{color:#fff}
+.skills-sec .ss{color:rgba(255,255,255,.45)}
+.skg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.skc{background:#13243a;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;transition:border-color .2s}
+.skc:hover{border-color:rgba(30,111,255,.4)}
+.skh{font-size:13px;font-weight:600;color:#fff;margin-bottom:.875rem}
+.tgs{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:10.5px;font-family:var(--mono);background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);padding:3px 8px;border-radius:4px}
+.tb2{background:rgba(30,111,255,.12);color:#82aaff}
+.tt{background:rgba(0,198,162,.12);color:var(--teal)}
+.tv{background:rgba(240,165,0,.12);color:#f0a500}
+
+/* Projects */
+.pg{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.pc{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .18s,box-shadow .18s}
+.pc:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,27,42,.09)}
+.cv{height:160px;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem;font-family:var(--mono);font-size:11.5px;gap:5px}
+.c3{background:#1a0d2e}.c4{background:#0d2520}
+.pl{display:inline-block;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);font-size:10px;padding:3px 8px;border-radius:4px;margin-bottom:.25rem}
+.pb{padding:1.25rem}
+.pt{font-size:10.5px;font-family:var(--mono);color:var(--accent);letter-spacing:.5px;margin-bottom:.4rem}
+.pb h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:.4rem;letter-spacing:-.3px}
+.pb p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.pst{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1rem}
+.ptg{font-size:10.5px;font-family:var(--mono);background:#eef2ff;color:#2e5fb7;padding:3px 8px;border-radius:4px}
+.pls{display:flex;gap:1rem;align-items:center}
+.pll{font-size:13px;color:var(--accent);font-weight:500}
+.pll:hover{text-decoration:underline}
+.pld{font-size:13px;color:#fff;font-weight:500;background:var(--accent);padding:6px 14px;border-radius:6px;transition:opacity .2s}
+.pld:hover{opacity:.85}
+
+/* Education */
+.edu-sec{background:#f0f4fa}
+.ec{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.75rem;display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1rem}
+.ei{width:44px;height:44px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ei svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:1.5}
+.eb h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.eb .sub{font-size:13px;color:var(--accent);font-weight:500;margin-top:3px}
+.eb .yr{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* Contact */
+.con-sec{background:var(--navy);text-align:center}
+.con-sec .stag{color:rgba(0,198,162,.8)}
+.con-sec .sh{color:#fff;margin-bottom:.6rem}
+.con-sec .ss{color:rgba(255,255,255,.45);margin:0 auto 2rem}
+.cls{display:flex;justify-content:center;gap:.875rem;flex-wrap:wrap}
+.cl{display:inline-flex;align-items:center;gap:8px;background:#13243a;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.75);padding:11px 22px;border-radius:8px;font-size:13px;transition:all .2s}
+.cl:hover{border-color:rgba(30,111,255,.5);color:#fff}
+.cl svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:12px;color:rgba(255,255,255,.25)}
+
+@media(max-width:768px){
+  nav{padding:0 1.25rem}
+  .nav-links button{padding:6px 10px;font-size:12px}
+
+  .hero{padding:2.5rem 1.25rem 2rem}
+  .hero-inner{grid-template-columns:1fr;gap:2rem}
+  .hero h1{font-size:30px;letter-spacing:-1px}
+  .hero-desc{font-size:14px}
+  .hero-btns{flex-direction:column;gap:.6rem}
+  .bp,.bg-btn{width:100%;text-align:center;padding:12px}
+  .term{font-size:11.5px}
+
+  section{padding:2.5rem 1.25rem}
+  .sh{font-size:24px}
+
+  .ag{grid-template-columns:1fr;gap:1.5rem}
+  .av{max-width:100%;aspect-ratio:unset;padding:1.5rem;flex-direction:row;gap:1rem;border-radius:12px}
+  .av-i{font-size:36px}
+  .sts{grid-template-columns:repeat(3,1fr);gap:.6rem}
+  .st-c .n{font-size:18px}
+
+  .skg{grid-template-columns:1fr;gap:1rem}
+
+  .pg{grid-template-columns:1fr;gap:1.25rem}
+  .cv{height:130px}
+
+  .ec{flex-direction:column;gap:.75rem;padding:1.1rem}
+  .ei{width:36px;height:36px}
+
+  .cls{flex-direction:column;align-items:center}
+  .cl{width:100%;max-width:280px;justify-content:center}
+
+  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1rem 1.25rem}
+}
+
+@media(max-width:400px){
+  .hero h1{font-size:26px}
+  .sts{grid-template-columns:repeat(3,1fr)}
+  .st-c .n{font-size:16px}
+  .st-c .l{font-size:9px}
+  .nav-links button{padding:5px 8px;font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand" onclick="goTo('s-home')">Ragul<span>.</span></div>
+  <div class="nav-links">
+    <button id="nb-about" onclick="goTo('s-about')">About</button>
+    <button id="nb-projects" onclick="goTo('s-projects')">Projects</button>
+    <button id="nb-contact" onclick="goTo('s-contact')">Contact</button>
+  </div>
+</nav>
+
+<div id="s-home">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="pill"><span class="dot"></span> Open to opportunities</div>
+        <h1>Hi, I'm <em>Ragul</em> —<br>AI/ML Engineer</h1>
+        <p class="hero-desc">A passionate fresher building intelligent systems — from deepfake detection to resume analysis. I turn data into decisions using Python, JavaScript, and TypeScript.</p>
+        <div class="hero-btns">
+          <button class="bp" onclick="goTo('s-projects')">View projects</button>
+          <a href="https://github.com/ragul0984" class="bg-btn" target="_blank">GitHub profile</a>
+        </div>
+      </div>
+      <div class="term">
+        <div class="tb"><span class="tr"></span><span class="ty"></span><span class="tg"></span></div>
+        <div class="tl"><span class="kw">import</span> <span class="fn">ragul</span> <span class="kw">from</span> <span class="st">'./engineer'</span></div>
+        <div class="tl">&nbsp;</div>
+        <div class="tl"><span class="kw">const</span> profile = {</div>
+        <div class="tl">&nbsp;&nbsp;name: <span class="st">"Ragul"</span>,</div>
+        <div class="tl">&nbsp;&nbsp;role: <span class="st">"AI/ML Engineer"</span>,</div>
+        <div class="tl">&nbsp;&nbsp;college: <span class="st">"DSEC"</span>,</div>
+        <div class="tl">&nbsp;&nbsp;available: <span class="kw">true</span>,</div>
+        <div class="tl">}</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="s-about">
+  <section style="background:var(--surface)">
+    <div class="inner">
+      <div class="ag">
+        <div>
+          <div class="av">
+            <div class="av-i">R</div>
+            <div class="av-n">Ragul</div>
+            <div class="av-r">AI / ML Engineer</div>
+            <div class="av-b">Fresher · 2027</div>
+          </div>
+        </div>
+        <div class="abt">
+          <div class="stag">About me</div>
+          <div class="sh">Building the future with AI</div>
+          <p>I'm Ragul, an AI/ML engineering student at Dhanalakshmi Srinivasan Engineering College, Perambalur. Passionate about computer vision, NLP, and building practical intelligent applications.</p>
+          <p>From detecting deepfakes to building a smart resume analyzer — I'm eager to join a team where I can contribute, grow, and ship meaningful AI products.</p>
+          <div class="sts">
+            <div class="st-c"><span class="n">2</span><span class="l">AI projects</span></div>
+            <div class="st-c"><span class="n">3</span><span class="l">Languages</span></div>
+            <div class="st-c"><span class="n">2027</span><span class="l">Graduating</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="s-skills">
+  <section class="skills-sec">
+    <div class="inner">
+      <div class="stag">Expertise</div>
+      <div class="sh">Technical skills</div>
+      <p class="ss">A growing stack focused on AI/ML, web development, and tooling.</p>
+      <div class="skg">
+        <div class="skc">
+          <div class="skh">AI / ML</div>
+          <div class="tgs">
+            <span class="tag tt">Python</span><span class="tag tt">TensorFlow</span><span class="tag tt">PyTorch</span>
+            <span class="tag tt">Computer Vision</span><span class="tag tt">NLP</span><span class="tag tt">scikit-learn</span>
+          </div>
+        </div>
+        <div class="skc">
+          <div class="skh">Web Dev</div>
+          <div class="tgs">
+            <span class="tag tb2">JavaScript</span><span class="tag tb2">TypeScript</span>
+            <span class="tag tb2">HTML/CSS</span><span class="tag tb2">Flask</span><span class="tag tb2">REST APIs</span>
+          </div>
+        </div>
+        <div class="skc">
+          <div class="skh">Tools</div>
+          <div class="tgs">
+            <span class="tag">Git & GitHub</span><span class="tag">VS Code</span>
+            <span class="tag">Jupyter</span><span class="tag tv">Vibe Coder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="s-projects">
+  <section style="background:var(--bg)">
+    <div class="inner">
+      <div class="stag">Portfolio</div>
+      <div class="sh">GitHub projects</div>
+      <p class="ss">Hands-on AI/ML projects built from scratch — available on my GitHub.</p>
+      <div class="pg">
+        <div class="pc">
+          <div class="cv c3">
+            <span class="pl">JavaScript</span>
+            <span style="color:rgba(255,255,255,.4);font-size:11px;">model.predict(frame) → fake: 94.2%</span>
+          </div>
+          <div class="pb">
+            <div class="pt">AI / Computer Vision</div>
+            <h3>Deepfake Detection</h3>
+            <p>Analyzes video frames and classifies them as real or manipulated using a trained ML model deployed in the browser.</p>
+            <div class="pst"><span class="ptg">JavaScript</span><span class="ptg">TensorFlow.js</span><span class="ptg">Computer Vision</span></div>
+            <div class="pls"><a href="https://github.com/ragul0984/Deepfake-Detection" class="pll" target="_blank">GitHub →</a></div>
+          </div>
+        </div>
+        <div class="pc">
+          <div class="cv c4">
+            <span class="pl">TypeScript</span>
+            <span style="color:rgba(255,255,255,.4);font-size:11px;">resume.parse() → score: 87</span>
+          </div>
+          <div class="pb">
+            <div class="pt">NLP / Developer Tool</div>
+            <h3>Resume Analyzer</h3>
+            <p>Parses resumes, extracts key skills and experience, and provides actionable feedback to improve job applications.</p>
+            <div class="pst"><span class="ptg">TypeScript</span><span class="ptg">NLP</span><span class="ptg">Node.js</span><span class="ptg">Vercel</span></div>
+            <div class="pls">
+              <a href="https://resume-analyzer-self-iota.vercel.app/" class="pld" target="_blank">Live Demo →</a>
+              <a href="https://github.com/ragul0984/resume-analyzer" class="pll" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="s-edu">
+  <section class="edu-sec">
+    <div class="inner">
+      <div class="stag">Background</div>
+      <div class="sh">Education</div>
+      <p class="ss">Academic foundation in Information Technology with a focus on intelligent systems.</p>
+      <div class="ec">
+        <div class="ei"><svg viewBox="0 0 24 24"><path d="M12 3L2 9l10 6 10-6-10-6zM2 9v6m20-6v6M6 11.5v4.5a6 6 0 0012 0V11.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="eb">
+          <h3>Bachelor of Technology — Information Technology</h3>
+          <div class="sub">Dhanalakshmi Srinivasan Engineering College</div>
+          <div class="yr">Perambalur, Tamil Nadu · 2023 – 2027</div>
+        </div>
+      </div>
+      <div class="ec">
+        <div class="ei"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="eb">
+          <h3>Certifications & Courses</h3>
+          <div class="sub">Machine Learning · Deep Learning · Web Development</div>
+          <div class="yr">Coursera, Udemy, etc.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="s-contact">
+  <section class="con-sec">
+    <div class="inner">
+      <div class="stag">Get in touch</div>
+      <div class="sh">Let's work together</div>
+      <p class="ss">Open to internships, entry-level roles, and collaborative AI/ML projects.</p>
+      <div class="cls">
+        <a href="https://github.com/ragul0984" class="cl" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/ragul8" class="cl" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:ragul@email.com" class="cl">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email me
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p>© 2026 Ragul. Built with purpose.</p>
+  <p><a href="https://github.com/ragul0984" style="color:rgba(255,255,255,.25)" target="_blank">github.com/ragul0984</a></p>
+</footer>
+
+<script>
+function goTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - 62;
+  window.scrollTo({top: top, behavior: 'smooth'});
+}
+
+function setActive(id) {
+  ['nb-about','nb-projects','nb-contact'].forEach(function(b){
+    document.getElementById(b).classList.remove('active');
+  });
+  var map = {'s-about':'nb-about','s-projects':'nb-projects','s-contact':'nb-contact'};
+  if (map[id]) document.getElementById(map[id]).classList.add('active');
+}
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) setActive(e.target.id); });
+}, {threshold: 0.35});
+
+['s-about','s-projects','s-contact'].forEach(function(id) {
+  observer.observe(document.getElementById(id));
+});
+</script>
+</body>
+</html>
